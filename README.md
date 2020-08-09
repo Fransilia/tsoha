@@ -1,7 +1,13 @@
 # tsoha
 ## Flashcard sovellus
+## Käyttö tällä hetkellä:
+https://flashcard-tsoha.herokuapp.com/
+
+Sovelluksen avatessa näkyy luodut flashcard paketit ja voi luoda uusia paketteja. Tällä hetkellä pakettiin saa ainoastaan yden termin. Kun paketin avaa (practice this deck) näkyy ensimmäinen termi ja kun painaa show answer saa ratkaisun. Tästä pitäisi pystyä mennä seuraavaan termiin, mutta se ei ole tällä hetkellä mahdollista. Etusivulla voi myös lisätä kommentin haluamaansa pakettiin. Jotta pystyy kommentoida on luotava tili ja kirjauduttava.
+
+## Sovelluksen alkuperäinen suunitelma
 - Sovelluksella voi tehdä uusia flashcard paketteja* ja tykätä niistä
-- Käyttäjä joka luo paketin on ainut ketä voi muokata sitä (lisätä kortti,      poistaa kortti, muokata korttia, poistaa koko paketti, lisätä kuvaus ja otsikko paketille)
+- Käyttäjä joka luo paketin on ainut ketä voi muokata sitä (lisätä kortti, poistaa kortti, muokata korttia, poistaa koko paketti, lisätä kuvaus ja otsikko paketille)
 - Muut käyttäjät voivat tykätä koko paketista tai yksittäisestä kortista
 - Flashcard paketeille tulee lisätä #. Esimerkiksi #englanti tai #aminohapot 
 - Paketteja voi etsiä # avulla. 
