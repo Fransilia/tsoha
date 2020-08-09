@@ -1,0 +1,17 @@
+  
+Comments: {{ count }}
+<hr>
+{% for comment in comments %}
+<i>Comment:</i> {{ comment[0] }}
+<p>
+<i>User:</i> {{ comment[1] }}
+<p>
+<i>Sent at:</i> {{ comment[2].strftime("%Y-%m-%d %H:%M:%S") }}
+<hr>
+{% endfor %}
+{% if session.user_id %}
+You are logged in.
+<a href="/deck/{{deck_id}}/newcomment">Add comment</a> | <a href="/logout">Sign out</a>
+{% else %}
+<a href="/login">Log in</a>
+{% endif %}
