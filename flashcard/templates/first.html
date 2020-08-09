@@ -1,0 +1,11 @@
+<a href="/new">Make new deck</a>
+<hr>
+{% for deck in decks %}
+Deck title: {{ deck[1] }} <br>
+Description: {{ deck[2]}} <br>
+<a href="/deck/{{ deck[0] }}">Practise this deck</a> |
+<!-- <a href="/result/{{ deck[0] }}">Do test</a>  -->
+<a href="/deck/{{ deck[0] }}/comments">Comment</a> 
+<!-- <a href="/update/{{ deck[0] }}">Make changes</a><br> -->
+<hr>
+{% endfor %}
