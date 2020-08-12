@@ -1,0 +1,21 @@
+ChatApp sovellus toimii hyvin ja on helppo käyttää. 
+Kuvaus projektin etenemisestä vastaa sovelluksen nykyistä tilaa. 
+Sovellus hyvässä vaiheessa ja suunnitelmat seuraavaan vaiheeseen merkitty selkeästi. 
+
+Kun kirjoittaa pitkän viestin joka on pidempi kuin mitä viestikenttään mahtuu niin tulisiko viestikentän tulla isommaksi tai antaa mahdollisuus “scrollata” tekstiä. 
+Olit kirjoittanut todo chatti scrollaus niin tarkoitit ehkä juuri tätä. 
+Olit myös maininnut app.py todossa mahdollisuudesta piilottaa chatti. 
+Chatin piilotus tai yksityiseksi laittaminen kuulostaa hyvältä idealta. 
+Voisiko silloin chattiin jo osallistuneet käyttäjät nähdä chatin vai vain ylläpitäjä? 
+
+Tällä hetkellä haussa tulee sama chatti useaan kertaan. 
+Muuten toimii hyvin ja pystyy vain kirjoittamaan omiin chatteihin.
+
+Käyttäjän lisääminen toimii. 
+Tällä hetkellä ei rajoitusta käyttäjän nimen pituudesta. (kuten ei ollut minullakaan :D ) 
+Pystyi myös lisäämään käyttäjän ilman salasanaa tai ilman nimeä vaikka tietokannassa oli user not null.
+
+Tietokanta vaikuttaa muuten toimivan hyvin. Myös sovelluksen koko rakenne tehty hyvin ja jaettu järkeviin osiin. 
+Selkeää koodia ja selkeä rakenne. Hyvää työtä ja kiva sovellus :) 
+
+(kiitos jennaran hyvästä vertaisarvioinnista!)
