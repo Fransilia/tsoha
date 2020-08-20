@@ -7,7 +7,9 @@
 
 <ul>
     <li><a href="/">Home</a></li>
+    {% if session.user_id %}
     <li><a href="/first">Flashcards</a></li>
+    {% endif %}
     <li><a href="/information">Information</a></li>
     {% if session.user_id %}
     <li style="float:right"><a class="active" href="/logout">Sign out</a></li>
