@@ -1,6 +1,30 @@
-<form action="/deck/{{deck_id}}/send" method="post">
-    Message: <br>
-    <textarea name="content" rows="3" cols="40"></textarea>
-    <br>
-    <input type="submit" value="Lähetä">
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+<div class="header">
+    <h1>Flashstudy</h1>
+</div>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/information">Information</a></li>
+    {% if session.user_id %}
+    <li style="float:right"><a class="active" href="/logout">Sign out</a></li>
+    {% else %}
+    <li style="float:right"><a class="active" href="/register">Sign up</a></li>
+    <li style="float:right"><a class="active" href="/login">Login</a></li>
+    {% endif %}
+</ul>
+
+<br>
+<br>
+
+<div class="content">
+    {% if session.user_id %}
+    <form action="/deck/{{deck_id}}/send" method="post">
+        Message: <br>
+        <textarea name="content" rows="3" cols="40" style = "margin:0px; height:220px; width:500px;"></textarea>
+        <br>
+        <input type="submit" value="Send">
     </form>
+    {% else %}
+    <p>Please login to see content</p>
+    {% endif %}
+</div>

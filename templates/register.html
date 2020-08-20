@@ -1,7 +1,25 @@
-<form action="/register" method="post">
-    User name: <input type="text" name="username">
-    <p>
-    Password: <input type="password" name="password">
-    <p>
-    <input type="submit" value="Make account">
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+
+<div class="header">
+    <h1>Flashstudy</h1>
+</div>
+
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/information">Information</a></li>
+    <li style="float:right"><a class="active" href="/register">Sign up</a></li>
+    <li style="float:right"><a class="active" href="/login">Login</a></li>
+</ul>
+
+<br>
+<br>
+
+<div class="content">
+    <form action="/register" method="post">
+        User name: <input type="text" name="username">
+        <p>
+            Password: <input type="password" name="password">
+        <p>
+        <input type="submit" value="Make account">
     </form>
+</div>

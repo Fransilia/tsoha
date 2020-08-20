@@ -1,9 +1,26 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+<div class="header">
+    <h1>Flashstudy</h1>
+</div>
 
-<form action="/login" method="post">
-    User name: <input type="text" name="username">
-    <p>
-    Password: <input type="password" name="password">
-    <p>
-    <input type="submit" value="Kirjaudu">
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/information">Information</a></li>
+    <li style="float:right"><a class="active" href="/register">Sign up</a></li>
+    <li style="float:right"><a class="active" href="/login">Login</a></li>
+</ul>
+
+<br>
+<br>
+
+<div class="content">
+
+    <form action="/login" method="post">
+        User name: <input type="text" name="username">
+        <p>
+        Password: <input type="password" name="password">
+        <p>
+        <input type="submit" value="Log in">
     </form>
-    Don't have an accuont?? You can register <a href="/register">here</a>
+    Don't have an account?? You can register <a href="/register">here</a>
+</div>

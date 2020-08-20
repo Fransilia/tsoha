@@ -1,13 +1,38 @@
-<form action="/create" method="POST">
-    <p>Titel to deck:<br>
-    <input type="text" name="topic"></p>
-    <p>Add description:<br>
-    <input type="text" name="description"></p>
-    <p>Add hashtags (so others can find your deck):<br>
-    <input type="text" name="hashtags"></p>
-    <p>Add card:<br>
-    <input type="text" name="word">
-    <input type="text" name="answer"></p>
-    <input type="submit" value="Create deck">
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+<div class="header">
+    <h1>Flashstudy</h1>
+</div>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/new">Make new deck</a></li>
+    <li><a href="/information">Information</a></li>
+    {% if session.user_id %}
+    <li style="float:right"><a class="active" href="/logout">Sign out</a></li>
+    {% else %}
+    <li style="float:right"><a class="active" href="/register">Sign up</a></li>
+    <li style="float:right"><a class="active" href="/login">Login</a></li>
+    {% endif %}
+</ul>
+
+<br>
+<br>
+
+<div class="content">
+    {% if session.user_id %}
+    <form action="/create" method="POST">
+        <p>Titel to deck:<br>
+        <input type="text" name="topic"></p>
+        <p>Add description:<br>
+        <input type="text" name="description"></p>
+        <p>Add hashtags (so others can find your deck):<br>
+        <input type="text" name="hashtags"></p>
+        <p>Add card:<br>
+        <input type="text" name="word">
+        <input type="text" name="answer"></p>
+        <input type="submit" value="Create deck">
     </form>
-    <a href="/">Done</a>
+    <a href="/first">Nevermind</a>
+    {% else %}
+    <p>Please sign in to view content and make your own flashcards</p>
+    {% endif %}
+</div>

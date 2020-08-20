@@ -3,12 +3,21 @@ from flask import render_template, request, redirect
 from db import db
 import comments, users
 
+@app.route("/")
+def index():
+    lines = ["Study", "with flashcards", "and have fun!"]
+    return render_template("index.html", items=lines)
+
 @app.route("/deck/<int:id>/comments")
-def index(id):
+def comment(id):
     list = comments.get_list(id)
     return render_template("comments.html", deck_id=id, count=len(list), comments=list)
 
-@app.route("/")
+@app.route("/information")
+def information():
+    return render_template("information.html")
+
+@app.route("/first")
 def first():
     sql = "SELECT id, topic FROM decks ORDER BY id DESC"
     result = db.session.execute(sql)
@@ -95,7 +104,7 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
         if users.login(username,password):
-            return redirect("/")
+            return redirect("/first")
         else:
             return render_template("error.html",message="Wrong username or password.")
 

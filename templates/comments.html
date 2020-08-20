@@ -1,17 +1,41 @@
   
-Comments: {{ count }}
-<hr>
-{% for comment in comments %}
-<i>Comment:</i> {{ comment[0] }}
-<p>
-<i>User:</i> {{ comment[1] }}
-<p>
-<i>Sent at:</i> {{ comment[2].strftime("%Y-%m-%d %H:%M:%S") }}
-<hr>
-{% endfor %}
-{% if session.user_id %}
-You are logged in.
-<a href="/deck/{{deck_id}}/newcomment">Add comment</a> | <a href="/logout">Sign out</a>
-{% else %}
-<a href="/login">Log in</a>
-{% endif %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+<script src="{{ url_for('static', filename='index.js') }}"></script>
+<div class="header">
+    <h1>Flashstudy</h1>
+</div>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/information">Information</a></li>
+    {% if session.user_id %}
+    <li style="float:right"><a class="active" href="/logout">Sign out</a></li>
+    {% else %}
+    <li style="float:right"><a class="active" href="/register">Sign up</a></li>
+    <li style="float:right"><a class="active" href="/login">Login</a></li>
+    {% endif %}
+</ul>
+
+<br>
+<br>
+
+<div class="content">
+    {% if session.user_id %}
+    Comments: {{ count }} | <a href="/deck/{{deck_id}}/newcomment">Add comment</a>
+    <hr>
+    {% for comment in comments %}
+    <i>Comment:</i> {{ comment[0] }}
+    <p>
+    <i>User:</i> {{ comment[1] }}
+    <p>
+    <i>Sent at:</i> {{ comment[2].strftime("%Y-%m-%d %H:%M:%S") }}
+    <hr>
+    {% endfor %}
+    <a href="/deck/{{deck_id}}/newcomment">Add comment</a>
+    {% else %}
+    <p>You need to <a href="/login">Login</a> to send comment...</p>
+    <p> and to see the content</p>
+    {% endif %}
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+</div>
+
+

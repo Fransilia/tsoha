@@ -1,11 +1,35 @@
-<a href="/new">Make new deck</a>
-<hr>
-{% for deck in decks %}
-Deck title: {{ deck[1] }} <br>
-Description: {{ deck[2]}} <br>
-<a href="/deck/{{ deck[0] }}">Practise this deck</a> |
-<!-- <a href="/result/{{ deck[0] }}">Do test</a>  -->
-<a href="/deck/{{ deck[0] }}/comments">Comment</a> 
-<!-- <a href="/update/{{ deck[0] }}">Make changes</a><br> -->
-<hr>
-{% endfor %}
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+<div class="header">
+    <h1>Flashstudy</h1>
+</div>
+<ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/new">Make new deck</a></li>
+    <li><a href="/information">Information</a></li>
+    {% if session.user_id %}
+    <li style="float:right"><a class="active" href="/logout">Sign out</a></li>
+    {% else %}
+    <li style="float:right"><a class="active" href="/register">Sign up</a></li>
+    <li style="float:right"><a class="active" href="/login">Login</a></li>
+    {% endif %}
+</ul>
+
+<br>
+<br>
+
+<div class="content">
+    {%if session.user_id%}
+    <hr>
+    {% for deck in decks %}
+    Deck title: {{ deck[1] }} <br>
+    Description: {{ deck[2]}} <br>
+    <a href="/deck/{{ deck[0] }}">Practise this deck</a> |
+    <!-- <a href="/result/{{ deck[0] }}">Do test</a>  -->
+    <a href="/deck/{{ deck[0] }}/comments">Comment</a> 
+    <!-- <a href="/update/{{ deck[0] }}">Make changes</a><br> -->
+    <hr>
+    {% endfor %}
+    {% else %}
+    <p>Please sign in to view content and make your own flashcards</p>
+    {% endif %}
+</div>
