@@ -20,13 +20,13 @@ CREATE TABLE backside (
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username TEXT UNIQUE,
-    password TEXT
+    username VARCHAR(14) UNIQUE NOT NULL,
+    password TEXT NOT NULL
 );
 
 CREATE TABLE comments (
     id SERIAL PRIMARY KEY,
-    content TEXT,
+    content TEXT NOT NULL,
     user_id INTEGER REFERENCES users, 
     deck_id INTEGER REFERENCES decks,
     sent_at TIMESTAMP

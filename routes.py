@@ -42,8 +42,7 @@ def addcards():
     return render_template("addcards.html")
 
 @app.route("/added", methods=["POST"])
-def added():
-    deck_id = 9
+def added(deck_id, frontside_id):
     word = request.form["word"]
     sql = "INSERT INTO frontside (deck_id, word) VALUES (:deck_id, :word) RETURNING id"
     result = db.session.execute(sql, {"deck_id":deck_id, "word":word})
