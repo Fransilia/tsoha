@@ -16,6 +16,15 @@
   width: fit-content;
 }
 
+.card {
+  border-style: solid;
+  border-color: #1f181836;
+  text-align: center;
+  background: #00000038;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 ul {
     list-style-type: none;
     margin: 0;

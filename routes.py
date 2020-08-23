@@ -48,8 +48,10 @@ def create():
 
 @app.route("/addcards/<int:id>")
 def addcards(id):
-    print(id)
-    return render_template("addcards.html", deck_id=id)
+    sql = "SELECT topic FROM decks WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    topic = result.fetchone()[0]
+    return render_template("addcards.html", deck_id=id, topic=topic)
 
 @app.route("/added/<int:deck_id>", methods=["POST"])
 def added(deck_id):
@@ -68,7 +70,7 @@ def deck(id):
     sql = "SELECT topic FROM decks WHERE id=:id"
     result = db.session.execute(sql, {"id":id})
     topic = result.fetchone()[0]
-    sql = "SELECT id, word FROM frontside WHERE deck_id=:id"
+    sql = "SELECT id, word FROM frontside WHERE deck_id=:id ORDER BY RANDOM() LIMIT 1"
     result = db.session.execute(sql, {"id":id})
     frontside = result.fetchone()
     word = frontside[1]
@@ -83,7 +85,7 @@ def answer(deck_id, frontside_id):
     sql = "SELECT id, answer FROM backside WHERE frontside_id=:id"
     result = db.session.execute(sql, {"id":frontside_id})
     answer = result.fetchone()[1]
-    return render_template("backside.html", topic=topic, answer=answer)
+    return render_template("backside.html", topic=topic, answer=answer, deck_id=deck_id)
 
 @app.route("/deck/<int:id>/newcomment")
 def newcomment(id):

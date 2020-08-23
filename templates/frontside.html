@@ -16,14 +16,18 @@
 
 <br>
 <br>
-{% if session.user_id %}
-{{ topic }}
-<br>
-{{ word }}
-<br>
-<a href="/answer/{{ deck_id }}/{{frontside_id}}">Show answer</a>
-<br>
-<a href="/first">Go back</a>
-{% else %}
-<p>Please login</p>
-{% endif %}
+<div class="content">
+    {% if session.user_id %}
+    Practising deck: {{ topic }}
+    <br>
+    <br>
+    <div class="card">
+        {{ word }}
+    </div>
+    <br>
+    <a href="/answer/{{ deck_id }}/{{frontside_id}}">Show answer</a>
+    <a href="/first">Go back</a>
+    {% else %}
+    <p>Please login</p>
+    {% endif %}
+</div>

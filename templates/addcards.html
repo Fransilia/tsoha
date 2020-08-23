@@ -4,18 +4,29 @@
 </div>
 <ul>
     <li><a href="/">Home</a></li>
+    <li><a href="/first">Back to decks</a></li>
+    <li><a href="/new">Make new deck</a></li>
     <li><a href="/information">Information</a></li>
+    {% if session.user_id %}
+    <li style="float:right"><a class="active" href="/logout">Sign out</a></li>
+    {% else %}
     <li style="float:right"><a class="active" href="/register">Sign up</a></li>
     <li style="float:right"><a class="active" href="/login">Login</a></li>
+    {% endif %}
 </ul>
 
 <br>
 <br>
 
-<p>under progress</p>
+{% if session.user_id %}
+<p>adding card to deck {{topic}}</p> 
+
 <form action="/added/{{ deck_id }}" method="POST">
 <p>Add card:<br>
 <input type="text" name="word">
 <input type="text" name="answer"></p>
-<input type="submit" value="Add cards">
+<input type="submit" value="Add card">
 </form>
+{% else %}
+<p>Please login</p>
+{% endif %}

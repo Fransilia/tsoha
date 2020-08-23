@@ -8,6 +8,7 @@
     <li><a href="/">Home</a></li>
     <li><a href="/information">Information</a></li>
     {% if session.user_id %}
+    <li><a href="/first">Back to decks</a></li>
     <li style="float:right"><a class="active" href="/logout">Sign out</a></li>
     {% else %}
     <li style="float:right"><a class="active" href="/register">Sign up</a></li>
