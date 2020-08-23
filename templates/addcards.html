@@ -18,15 +18,17 @@
 <br>
 <br>
 
-{% if session.user_id %}
-<p>adding card to deck {{topic}}</p> 
+<div class="content">
+    {% if session.user_id %}
+    <p>adding card to deck {{topic}}</p> 
 
-<form action="/added/{{ deck_id }}" method="POST">
-<p>Add card:<br>
-<input type="text" name="word">
-<input type="text" name="answer"></p>
-<input type="submit" value="Add card">
-</form>
-{% else %}
-<p>Please login</p>
-{% endif %}
+    <form action="/added/{{ deck_id }}" method="POST">
+    <p>Add card:<br>
+    <input type="text" name="word">
+    <input type="text" name="answer"></p>
+    <input type="submit" value="Add card">
+    </form>
+    {% else %}
+    <p>Please login</p>
+    {% endif %}
+</div>
