@@ -3,6 +3,18 @@
 ## Käyttö tällä hetkellä:
 https://flashcard-tsoha.herokuapp.com/
 
+Sovelluksen avatessa näkyy etusivu. Siitä voi kirjautua sisään, luoda tilin tai käydä info sivulla. Tällä hetkellä voi luoda tilin ilman käyttäjää ja/tai salasanaa. Kun on kirjautunut sisään pääsee näkemään muiden tekemiä flashcard paketteja, harjoittelemaan, tekemään testejä, kommentoimaan ja lisäämään omia paketteja. 
+
+#### Lisättävät/muutettavat asiat
+- kirjautumisen korjaus jotta ei voi kirjautua ilman käyttäjää ja/tai salasanaa
+- testi missä valitaan oikea vastaus muutamasta vaihtoehdosta
+- tekstikentän suurentamis mahdollisuus kun lisää kortin/pakan
+- vain omien pakkojen muokkaaminen
+- (pakasta tykkääminen)
+- (tietokanta muokkaus ei kahta taulua frontside ja backside)
+
+## Kayttö 9.8.2020
+
 Sovelluksen avatessa näkyy luodut flashcard paketit ja voi luoda uusia paketteja. Tällä hetkellä pakettiin saa ainoastaan yden termin. Kun paketin avaa (practice this deck) näkyy ensimmäinen termi ja kun painaa show answer saa ratkaisun. Tästä pitäisi pystyä mennä seuraavaan termiin, mutta se ei ole tällä hetkellä mahdollista. Etusivulla voi myös lisätä kommentin haluamaansa pakettiin. Jotta pystyy kommentoida on luotava tili ja kirjauduttava.
 
 ## Nykyinen tila
