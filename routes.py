@@ -44,7 +44,7 @@ def create():
     sql = "INSERT INTO backside (frontside_id, answer) VALUES (:frontside_id, :answer) RETURNING id"
     result = db.session.execute(sql, {"frontside_id":frontside_id, "answer":answer})
     db.session.commit()
-    return redirect("/new")
+    return redirect("/first")
 
 @app.route("/addcards/<int:id>")
 def addcards(id):
