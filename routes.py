@@ -46,12 +46,13 @@ def create():
     db.session.commit()
     return redirect("/new")
 
-@app.route("/addcards")
-def addcards():
-    return render_template("addcards.html")
+@app.route("/addcards/<int:id>")
+def addcards(id):
+    print(id)
+    return render_template("addcards.html", deck_id=id)
 
-@app.route("/added", methods=["POST"])
-def added(deck_id, frontside_id):
+@app.route("/added/<int:deck_id>", methods=["POST"])
+def added(deck_id):
     word = request.form["word"]
     sql = "INSERT INTO frontside (deck_id, word) VALUES (:deck_id, :word) RETURNING id"
     result = db.session.execute(sql, {"deck_id":deck_id, "word":word})
@@ -60,7 +61,7 @@ def added(deck_id, frontside_id):
     sql = "INSERT INTO backside (frontside_id, answer) VALUES (:frontside_id, :answer) RETURNING id"
     result = db.session.execute(sql, {"frontside_id":frontside_id, "answer":answer})
     db.session.commit()
-    return redirect("/addcards")
+    return redirect("/addcards/" + str(deck_id))
 
 @app.route("/deck/<int:id>")
 def deck(id):
