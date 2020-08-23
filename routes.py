@@ -87,6 +87,29 @@ def answer(deck_id, frontside_id):
     answer = result.fetchone()[1]
     return render_template("backside.html", topic=topic, answer=answer, deck_id=deck_id)
 
+@app.route("/test/<int:deck_id>")
+def test(deck_id):
+    sql = "SELECT topic FROM decks WHERE id=:id"
+    result = db.session.execute(sql, {"id":deck_id})
+    topic = result.fetchone()[0]
+    sql = "SELECT id, word FROM frontside WHERE deck_id=:id ORDER BY RANDOM() LIMIT 1"
+    result = db.session.execute(sql, {"id":deck_id})
+    frontside = result.fetchone()
+    word = frontside[1]
+    frontside_id = frontside[0]
+    return render_template("test.html", topic=topic, word=word, deck_id=deck_id, frontside_id=frontside_id)
+
+@app.route("/testcheck/<int:deck_id>/<int:frontside_id>", methods=["POST"])
+def testcheck(deck_id, frontside_id):
+    sql = "SELECT id, answer FROM backside WHERE frontside_id=:id"
+    result = db.session.execute(sql, {"id":frontside_id})
+    answer = result.fetchone()[1]
+    userinput = request.form["answer"]
+    if userinput == answer:
+        return render_template("correct.html", deck_id=deck_id)
+    else:
+        return render_template("wrong.html", deck_id=deck_id)
+
 @app.route("/deck/<int:id>/newcomment")
 def newcomment(id):
     return render_template("newcomment.html", deck_id=id)

@@ -16,20 +16,21 @@
 
 <br>
 <br>
-
 <div class="content">
-    {%if session.user_id%}
-    <hr>
-    {% for deck in decks %}
-    Deck title: {{ deck[1] }} <br>
-    Description: {{ deck[2]}} <br>
-    <a href="/deck/{{ deck[0] }}">Practise this deck</a> |
-    <a href="test/{{ deck[0] }}">Do test</a> |
-    <a href="/deck/{{ deck[0] }}/comments">Comment</a> |
-    <a href="/addcards/{{ deck[0] }}">Add cards</a>
-    <hr>
-    {% endfor %}
+    {% if session.user_id %}
+    Practising deck: {{ topic }}
+    <br>
+    <br>
+        {{ word }}
+    <br>
+    <form action="/testcheck/{{ deck_id }}/{{ frontside_id }}" method="POST">
+        Answer: <input type="text" name="answer"/>
+        <p>
+        <input type="submit" value="check">
+    </form>
+    <a href="/test/{{ deck_id }}">Show next</a>
+    <a href="/first">Go back</a>
     {% else %}
-    <p>Please sign in to view content and make your own flashcards</p>
+    <p>Please login</p>
     {% endif %}
 </div>
