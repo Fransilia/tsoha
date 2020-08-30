@@ -20,13 +20,17 @@
     {% if session.user_id %}
     Practising deck: {{ topic }}
     <br>
-    <br>
+    <p>answer:</p>
     <div class="card">
         {{ answer }}
     </div>
     <br>
     <a href="/deck/{{ deck_id }}">Show next</a>
+    <br>
+    <br>
+    Click when you are done practising:
     <a href="/first">Go back</a>
+    <p>(won't stop automatically)</p>
     {% else %}
     <p>Please login</p>
     {% endif %}
