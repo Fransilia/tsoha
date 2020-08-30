@@ -31,10 +31,12 @@
     {% if is_hard %}
     <form action="/unhard/{{frontside_id}}" method="post">
         <button>Unmark from "hard"</button>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
     {% else %}
     <form action="/hard/{{frontside_id}}" method="post">
         <button>Mark as "hard"</button>
+        <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
     {% endif %}
     <br>

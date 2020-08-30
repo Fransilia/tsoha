@@ -27,6 +27,7 @@
     <input type="text" name="word">
     <input type="text" name="answer"></p>
     <input type="submit" value="Add card">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
     </form>
     {% else %}
     <p>Please login</p>

@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, abort
 from db import db
 import comments, users
 
@@ -30,6 +30,8 @@ def new():
 
 @app.route("/create", methods=["POST"])
 def create():
+    if users.invalid_csrf_token(request.form["csrf_token"]):
+        abort(403)
     topic = request.form["topic"]
     description = request.form["description"]
     hashtags = request.form["hashtags"]
@@ -52,6 +54,8 @@ def addcards(id):
 
 @app.route("/added/<int:deck_id>", methods=["POST"])
 def added(deck_id):
+    if users.invalid_csrf_token(request.form["csrf_token"]):
+        abort(403)
     word = request.form["word"]
     answer = request.form["answer"]
     sql = "INSERT INTO frontside (deck_id, word, answer) VALUES (:deck_id, :word, :answer) RETURNING id"
@@ -114,6 +118,8 @@ def newcomment(id):
 
 @app.route("/deck/<int:id>/send", methods=["post"])
 def send(id):
+    if users.invalid_csrf_token(request.form["csrf_token"]):
+        abort(403)
     content = request.form["content"]
     if comments.send(content, id):
         return redirect("/deck/"+str(id)+"/comments")
@@ -151,6 +157,8 @@ def register():
 
 @app.route("/hard/<int:frontside_id>", methods=["post"])
 def hard(frontside_id):
+    if users.invalid_csrf_token(request.form["csrf_token"]):
+        abort(403)
     user_id = users.user_id()
     sql= "INSERT INTO hard (user_id, frontside_id) VALUES (:user_id, :frontside_id)"
     result = db.session.execute(sql, {"user_id":user_id, "frontside_id":frontside_id})
@@ -159,6 +167,8 @@ def hard(frontside_id):
 
 @app.route("/unhard/<int:frontside_id>", methods=["post"])
 def unhard(frontside_id):
+    if users.invalid_csrf_token(request.form["csrf_token"]):
+        abort(403)
     user_id = users.user_id()
     sql="DELETE FROM hard WHERE user_id=:user_id AND frontside_id=:frontside_id"
     result = db.session.execute(sql, {"user_id":user_id, "frontside_id":frontside_id})
