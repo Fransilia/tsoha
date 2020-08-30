@@ -20,19 +20,22 @@ Tämän lisäksi pakkoja voi kommentoida ja siinä samassa lisätä vaikkapa arv
 Kun käyttäjä on luonut opiskelupakan niin vain hän voin lisätä siihen kortteja. 
 
 
-Esimerkki pakka:
+Opiskelupakasta esimerkki:
 
-##Ruotsi sanasto (suomi - ruotsi)
-Syödä - äta
+##Ruotsi sanasto (pakan otsikko)
 
-Juoda - dricka
+suomi - ruotsi (pakan kuvaus)
 
-Laulaa - sjunga
+Syödä - äta (ensimmäinen kortti)
 
-Tietokone - dator
+Juoda - dricka (toinen kortti)
 
-Tietokanta - databas
+Laulaa - sjunga (kortti)
 
-Kirja - bok
+Tietokone - dator (kortti)
+
+Tietokanta - databas (kortti)
+
+Kirja - bok (kortti)
 
 
