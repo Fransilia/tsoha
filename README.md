@@ -2,8 +2,11 @@
 ## Flashcard sovellus
 ## Sovelluksen testaaminen:
 https://flashcard-tsoha.herokuapp.com/
+
 Esimerkki käyttäjä:
+
 User: user
+
 Password: pass
 
 Ruotsi sanasto (alin pakka decks sivulla) sisältää eniten kortteja testaamista varten. 
