@@ -22,7 +22,7 @@ Kun käyttäjä on luonut opiskelupakan niin vain hän voin lisätä siihen kort
 
 Opiskelupakasta esimerkki:
 
-## Ruotsi sanasto (pakan otsikko)
+### Ruotsi sanasto (pakan otsikko)
 
 suomi - ruotsi (pakan kuvaus)
 
