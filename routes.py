@@ -73,13 +73,17 @@ def deck(id):
 
 @app.route("/answer/<int:deck_id>/<int:frontside_id>")
 def answer(deck_id, frontside_id):
+    user_id = users.user_id()
     sql = "SELECT topic FROM decks WHERE id=:id"
     result = db.session.execute(sql, {"id":deck_id})
     topic = result.fetchone()[0]
     sql = "SELECT id, answer FROM frontside WHERE id=:id"
     result = db.session.execute(sql, {"id":frontside_id})
     answer = result.fetchone()[1]
-    return render_template("backside.html", topic=topic, answer=answer, deck_id=deck_id)
+    sql = "SELECT COUNT(*) FROM hard WHERE frontside_id=:frontside_id AND user_id=:user_id"
+    result = db.session.execute(sql, {"frontside_id":frontside_id, "user_id":user_id})
+    is_hard = result.fetchone()[0] > 0
+    return render_template("backside.html", topic=topic, answer=answer, deck_id=deck_id, frontside_id=frontside_id, is_hard=is_hard)
 
 @app.route("/test/<int:deck_id>")
 def test(deck_id):
@@ -144,3 +148,19 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html",message="Could not register.")
+
+@app.route("/hard/<int:frontside_id>", methods=["post"])
+def hard(frontside_id):
+    user_id = users.user_id()
+    sql= "INSERT INTO hard (user_id, frontside_id) VALUES (:user_id, :frontside_id)"
+    result = db.session.execute(sql, {"user_id":user_id, "frontside_id":frontside_id})
+    db.session.commit()
+    return redirect(request.referrer)
+
+@app.route("/unhard/<int:frontside_id>", methods=["post"])
+def unhard(frontside_id):
+    user_id = users.user_id()
+    sql="DELETE FROM hard WHERE user_id=:user_id AND frontside_id=:frontside_id"
+    result = db.session.execute(sql, {"user_id":user_id, "frontside_id":frontside_id})
+    db.session.commit()
+    return redirect(request.referrer)

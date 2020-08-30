@@ -27,3 +27,9 @@ CREATE TABLE comments (
     sent_at TIMESTAMP
 );
 
+CREATE TABLE hard (
+    PRIMARY KEY (user_id, frontside_id),
+    user_id INTEGER REFERENCES users,
+    frontside_id INTEGER REFERENCES frontside 
+);
+

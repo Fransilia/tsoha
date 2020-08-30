@@ -27,6 +27,16 @@
     <br>
     <a href="/deck/{{ deck_id }}">Show next</a>
     <br>
+    
+    {% if is_hard %}
+    <form action="/unhard/{{frontside_id}}" method="post">
+        <button>Unmark from "hard"</button>
+    </form>
+    {% else %}
+    <form action="/hard/{{frontside_id}}" method="post">
+        <button>Mark as "hard"</button>
+    </form>
+    {% endif %}
     <br>
     Click when you are done practising:
     <a href="/first">Go back</a>
