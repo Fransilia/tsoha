@@ -19,6 +19,8 @@ def logout():
     del session["user_id"]
 
 def register(username,password):
+    if (len(username)==0 or len(password)==0):
+        return False
     hash_value = generate_password_hash(password)
     try:
         sql = "INSERT INTO users (username,password) VALUES (:username,:password)"
