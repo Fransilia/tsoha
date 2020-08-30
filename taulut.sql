@@ -9,12 +9,7 @@ CREATE TABLE decks (
 CREATE TABLE frontside (
     id SERIAL PRIMARY KEY,
     deck_id INTEGER REFERENCES decks,
-    word TEXT
-);
-
-CREATE TABLE backside (
-    id SERIAL PRIMARY KEY,
-    frontside_id INTEGER REFERENCES frontside,
+    word TEXT,
     answer TEXT
 );
 

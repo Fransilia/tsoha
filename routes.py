@@ -37,12 +37,9 @@ def create():
     result = db.session.execute(sql, {"topic":topic, "description":description, "hashtags":hashtags})
     deck_id = result.fetchone()[0]
     word = request.form["word"]
-    sql = "INSERT INTO frontside (deck_id, word) VALUES (:deck_id, :word) RETURNING id"
-    result2 = db.session.execute(sql, {"deck_id":deck_id, "word":word})
-    frontside_id = result2.fetchone()[0]
     answer = request.form["answer"]
-    sql = "INSERT INTO backside (frontside_id, answer) VALUES (:frontside_id, :answer) RETURNING id"
-    result = db.session.execute(sql, {"frontside_id":frontside_id, "answer":answer})
+    sql = "INSERT INTO frontside (deck_id, word, answer) VALUES (:deck_id, :word, :answer) RETURNING id"
+    result2 = db.session.execute(sql, {"deck_id":deck_id, "word":word, "answer":answer})
     db.session.commit()
     return redirect("/first")
 
@@ -56,12 +53,9 @@ def addcards(id):
 @app.route("/added/<int:deck_id>", methods=["POST"])
 def added(deck_id):
     word = request.form["word"]
-    sql = "INSERT INTO frontside (deck_id, word) VALUES (:deck_id, :word) RETURNING id"
-    result = db.session.execute(sql, {"deck_id":deck_id, "word":word})
-    frontside_id = result.fetchone()[0]
     answer = request.form["answer"]
-    sql = "INSERT INTO backside (frontside_id, answer) VALUES (:frontside_id, :answer) RETURNING id"
-    result = db.session.execute(sql, {"frontside_id":frontside_id, "answer":answer})
+    sql = "INSERT INTO frontside (deck_id, word, answer) VALUES (:deck_id, :word, :answer) RETURNING id"
+    result = db.session.execute(sql, {"deck_id":deck_id, "word":word, "answer":answer})
     db.session.commit()
     return redirect("/addcards/" + str(deck_id))
 
@@ -82,7 +76,7 @@ def answer(deck_id, frontside_id):
     sql = "SELECT topic FROM decks WHERE id=:id"
     result = db.session.execute(sql, {"id":deck_id})
     topic = result.fetchone()[0]
-    sql = "SELECT id, answer FROM backside WHERE frontside_id=:id"
+    sql = "SELECT id, answer FROM frontside WHERE id=:id"
     result = db.session.execute(sql, {"id":frontside_id})
     answer = result.fetchone()[1]
     return render_template("backside.html", topic=topic, answer=answer, deck_id=deck_id)
@@ -101,7 +95,7 @@ def test(deck_id):
 
 @app.route("/testcheck/<int:deck_id>/<int:frontside_id>", methods=["POST"])
 def testcheck(deck_id, frontside_id):
-    sql = "SELECT id, answer FROM backside WHERE frontside_id=:id"
+    sql = "SELECT id, answer FROM frontside WHERE id=:id"
     result = db.session.execute(sql, {"id":frontside_id})
     answer = result.fetchone()[1]
     userinput = request.form["answer"]
