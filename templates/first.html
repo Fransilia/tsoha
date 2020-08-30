@@ -19,6 +19,14 @@
 
 <div class="content">
     {%if session.user_id%}
+    <h3>Help:</h3>
+    <p>Browse decks below.</p>
+    <p>"Practise this deck": view cards one by one </p>
+    <p>"Do test": shows question and asks answer in writing</p>
+    <p>"Comment": add comment to deck or browse previous comments</p>
+    <p>"Add cards": add cards to deck. (only decks made by you)</p>
+    <br>
+    <h3>Decks:</h3>
     <hr>
     {% for deck in decks %}
     Deck title: {{ deck[1] }} <br>
