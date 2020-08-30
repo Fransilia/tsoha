@@ -1,8 +1,14 @@
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(14) UNIQUE NOT NULL,
+    password TEXT NOT NULL
+);
+
 CREATE TABLE decks (
     id SERIAL PRIMARY KEY,
     topic TEXT,
     description TEXT,
-    hashtags TEXT,
+    user_id INTEGER REFERENCES users,
     created_at TIMESTAMP
 );
 
@@ -11,12 +17,6 @@ CREATE TABLE frontside (
     deck_id INTEGER REFERENCES decks,
     word TEXT,
     answer TEXT
-);
-
-CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(14) UNIQUE NOT NULL,
-    password TEXT NOT NULL
 );
 
 CREATE TABLE comments (

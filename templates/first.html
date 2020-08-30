@@ -34,7 +34,9 @@
     <a href="/deck/{{ deck[0] }}">Practise this deck</a> |
     <a href="test/{{ deck[0] }}">Do test</a> |
     <a href="/deck/{{ deck[0] }}/comments">Comment</a> |
+    {% if session.user_id==deck[2] %}
     <a href="/addcards/{{ deck[0] }}">Add cards</a> |
+    {% endif %}
     <hr>
     {% endfor %}
     {% else %}

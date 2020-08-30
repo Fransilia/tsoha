@@ -19,7 +19,7 @@ def information():
 
 @app.route("/first")
 def first():
-    sql = "SELECT id, topic FROM decks ORDER BY id DESC"
+    sql = "SELECT id, topic, user_id FROM decks ORDER BY id DESC"
     result = db.session.execute(sql)
     decks = result.fetchall()
     return render_template("first.html", decks=decks)
@@ -32,11 +32,11 @@ def new():
 def create():
     if users.invalid_csrf_token(request.form["csrf_token"]):
         abort(403)
+    user_id = users.user_id()
     topic = request.form["topic"]
     description = request.form["description"]
-    hashtags = request.form["hashtags"]
-    sql = "INSERT INTO decks (topic, description, hashtags, created_at) VALUES (:topic, :description, :hashtags, NOW()) RETURNING id"
-    result = db.session.execute(sql, {"topic":topic, "description":description, "hashtags":hashtags})
+    sql = "INSERT INTO decks (topic, description, user_id, created_at) VALUES (:topic, :description, :user_id, NOW()) RETURNING id"
+    result = db.session.execute(sql, {"topic":topic, "description":description, "user_id":user_id})
     deck_id = result.fetchone()[0]
     word = request.form["word"]
     answer = request.form["answer"]
@@ -55,6 +55,11 @@ def addcards(id):
 @app.route("/added/<int:deck_id>", methods=["POST"])
 def added(deck_id):
     if users.invalid_csrf_token(request.form["csrf_token"]):
+        abort(403)
+    user_id = users.user_id()
+    sql = "SELECT COUNT(*) FROM decks WHERE id=:deck_id AND user_id=:user_id"
+    result = db.session.execute(sql, {"deck_id":deck_id, "user_id":user_id})
+    if result.fetchone()[0] <= 0:
         abort(403)
     word = request.form["word"]
     answer = request.form["answer"]
