@@ -19,7 +19,7 @@ def information():
 
 @app.route("/first")
 def first():
-    sql = "SELECT id, topic, user_id FROM decks ORDER BY id DESC"
+    sql = "SELECT id, topic, user_id, description FROM decks ORDER BY id DESC"
     result = db.session.execute(sql)
     decks = result.fetchall()
     return render_template("first.html", decks=decks)
